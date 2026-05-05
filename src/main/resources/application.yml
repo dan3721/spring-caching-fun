@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: pokemon-caching
+  datasource:
+    url: jdbc:postgresql://localhost:15432/pokemon
+    username: pokemon
+    password: pokemon
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+  data:
+    redis:
+      host: localhost
+      port: 16379
+  cache:
+    type: redis
+    redis:
+      key-prefix: "pokemon-caching:v6:"
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: WARN
+    "[org.springframework.cache]": WARN
