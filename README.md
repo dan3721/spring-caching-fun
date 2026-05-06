@@ -56,10 +56,24 @@ Fetch sets by series:
 curl "http://localhost:8080/api/pokemon/sets?series=Base"
 ```
 
+Create a new set:
+
+```bash
+curl -X POST "http://localhost:8080/api/pokemon/sets" \
+  -H "Content-Type: application/json" \
+  -d '{"id":"demo-set-1","name":"Demo Set","series":"Demo","printedTotal":10,"total":12,"releaseDate":"2026-05-06","updatedAt":"2026-05-06T09:00:00","symbolUrl":"https://example.com/symbol.png","logoUrl":"https://example.com/logo.png"}'
+```
+
 Fetch all available series names:
 
 ```bash
 curl "http://localhost:8080/api/pokemon/series"
+```
+
+Same data with **distributed single-flight** (`@CacheableD` + Spring Integration `RedisLockRegistry`, cache `pokemonSeriesNamesD`, 5-minute lock lease and cache TTL):
+
+```bash
+curl "http://localhost:8080/api/pokemon/series-d"
 ```
 
 Call the same request twice and compare response time:

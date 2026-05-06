@@ -17,7 +17,7 @@ spring:
   cache:
     type: redis
     redis:
-      key-prefix: "pokemon-caching:v6:"
+      key-prefix: "pokemon-caching:v7:"
 
 server:
   port: 8080
@@ -25,4 +25,5 @@ server:
 logging:
   level:
     root: WARN
-    "[org.springframework.cache]": WARN
+    org.springframework.cache: WARN
+    com.example.pokemon.cache.CacheableDAspect: DEBUG
